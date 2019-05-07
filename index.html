@@ -1,12 +1,52 @@
 <!DOCTYPE html>
+<html>
 
-<html lang="en-US">
-	
-	<body style="background-color:purple;">
-	<head></head>
-		<h1 style="align:center;color:white;">I'm so sorry, this should be available, but it's not, because it's not done you idiots.<br> FIX THIS, MONKEYS</h1>
+	<head>
+		<title>HJKL Productions</title>
+	</head>
+	<body>
+		<h1>HJKL Productions</h1>
+		<h2>Currently Working on making games and stuff<sup>its a card game maybe we have no clue</sup></h2>
+		<h2>Meanwhile, enjoy these random walkers <sup>made using the html5 canvas<sup>very cool</sup></sup></h2>
+		<canvas id="canvas" width="600" height="600" ></canvas>
+	<script>
+		function gel(id) {return document.getElementById(id)}
+		canvas = gel("canvas")
+		c = canvas.getContext("2d")
+		w = canvas.width
+		h = canvas.height
 
+		ants = []
 
+		for (var i =0; i< 100; i++) {
 
-</body>
+			ants.push({x:w/2,y:h/2,col:[Math.random()*256,Math.random()*256,Math.random()*256]})
+		}
+		
+		moves = [[0,1],[1,0],[0,-1],[-1,0]]
+		function move(a) {
+			var r = Math.floor(Math.random()*moves.length)
+			a.x += moves[r][0]
+			a.y += moves[r][1]
+			if (a.x > w) {a.x = 0}
+			if (a.x < 0) {a.x = w}
+			if (a.y > h) {a.y = 0}
+			if (a.y < 0) {a.y = h}
+		
+		}
+		function animate(t) {
+			for (i of ants) {
+				move(i)
+				c.fillStyle = `rgb(${i.col[0]},${i.col[1]},${i.col[2]})`
+				c.fillRect(i.x,i.y,1,1)
+			}
+
+			requestAnimationFrame(animate)
+		}
+requestAnimationFrame(animate)
+		
+	</script>
+	<p><a href="philosophy.html">Our Companies Philosophy</a></p>
+	</body>
+
 </html>
